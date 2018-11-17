@@ -76,6 +76,6 @@ public class Agency extends BaseAgency<Agency> {
     }
     
     public List<Agency> findList() {
-    	return find("select * from mzlt_agency by username desc");
+    	return find("select * from mzlt_agency order by username desc");
     }
 }

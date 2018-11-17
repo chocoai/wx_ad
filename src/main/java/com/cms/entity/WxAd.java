@@ -20,7 +20,8 @@ public class WxAd extends BaseWxAd<WxAd> {
      *            分页信息
      * @return 微信广告主分页
      */
-    public Page<WxAd> findPage(String adName, String industryId, String masterId, String agencyId, Integer pageNumber, Integer pageSize){
+    public Page<WxAd> findPage(String adName, String industryId, String masterId, String agencyId,
+    		String mobile, Integer pageNumber, Integer pageSize){
     	String seleteSql = "SELECT"
     				+ " a.*,"
     				+ " m.id AS masterId,"
@@ -35,16 +36,19 @@ public class WxAd extends BaseWxAd<WxAd> {
     			+ " LEFT JOIN mzlt_ad_industry i"
     			+ " ON a.industry_id = i.id where 1=1 ";
         if(StringUtils.isNotBlank(adName)){
-        	fromSql+= " and ad_name like '%"+adName+"%'";
+        	fromSql+= " and a.ad_name like '%"+adName+"%'";
         }
         if(StringUtils.isNotBlank(industryId)){
-        	fromSql+= " and industry_id = '"+industryId+"'";
+        	fromSql+= " and a.industry_id = '"+industryId+"'";
         }
         if(StringUtils.isNotBlank(masterId)){
-        	fromSql+= " and master_id = '"+masterId+"'";
+        	fromSql+= " and a.master_id = '"+masterId+"'";
         }
         if(StringUtils.isNotBlank(agencyId)){
-        	fromSql+= " and agency_id = '"+agencyId+"'";
+        	fromSql+= " and a.agency_id = '"+agencyId+"'";
+        }
+        if(StringUtils.isNotBlank(mobile)){
+        	fromSql+= " and m.mobile like '"+mobile+"%'";
         }
         String orderBySql = DBUtils.getOrderBySql("createDate desc");
         return paginate(pageNumber, pageSize, seleteSql, fromSql + orderBySql);

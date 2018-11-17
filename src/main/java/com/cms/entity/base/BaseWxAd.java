@@ -69,7 +69,7 @@ public abstract class BaseWxAd<M extends BaseWxAd<M>> extends Model<M> implement
 	}
 	
 	public java.util.Date getStartTime() {
-		return get("start_time");
+		return getDate("start_time");
 	}
 
 	public M setDays(java.lang.Integer days) {
@@ -90,13 +90,31 @@ public abstract class BaseWxAd<M extends BaseWxAd<M>> extends Model<M> implement
 		return getStr("remark");
 	}
 
-	public M setCreateTime(java.lang.Integer createTime) {
-		set("create_time", createTime);
+	public M setCreateDate(java.util.Date createDate) {
+		set("createDate", createDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getCreateTime() {
-		return getInt("create_time");
+	public java.util.Date getCreateDate() {
+		return getDate("createDate");
+	}
+
+	public M setAdName(java.lang.String adName) {
+		set("ad_name", adName);
+		return (M)this;
+	}
+	
+	public java.lang.String getAdName() {
+		return getStr("ad_name");
+	}
+
+	public M setOverTime(java.util.Date overTime) {
+		set("over_time", overTime);
+		return (M)this;
+	}
+	
+	public java.util.Date getOverTime() {
+		return getDate("over_time");
 	}
 
 }

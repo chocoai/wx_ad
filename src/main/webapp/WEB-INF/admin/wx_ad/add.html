@@ -14,24 +14,22 @@
                 <div class="ibox-content">
                     <div class="form-horizontal clearfix">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">标题：</label>
+                            <label class="col-sm-2 control-label">标题：</label>
                             <div class="col-sm-3">
-                                <input placeholder="手机号码" class="form-control" type="text" name="wxAd.ad_name">
+                                <input placeholder="广告标题" class="form-control" type="text" name="wxAd.ad_name">
                             </div>
-                        </div>
-                         <div class="form-group">
-                            <label class="col-sm-3 control-label">广告主：</label>
+                            <label class="col-sm-2 control-label">广告主：</label>
                             <div class="col-sm-3">
                                 <select id="master" name="wxAd.master_id">
 					     				<option value="">请选择</option>
 					      			[#list masterList as master]
-					     				<option value="${master.id}">${master.name}</option>
+					     				<option value="${master.id}">${master.username}</option>
 					     			[/#list]
 				          		</select> 
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-3 control-label">归属行业：</label>
+                            <label class="col-sm-2 control-label">归属行业：</label>
                             <div class="col-sm-3">
                                 <select id="industry" name="wxAd.industry_id">
 					     				<option value="">请选择</option>
@@ -40,40 +38,36 @@
 					     			[/#list]
 				          		</select> 
                             </div>
-                        </div>
-                         <div class="form-group">
-                            <label class="col-sm-3 control-label">接单代理：</label>
+                            <label class="col-sm-2 control-label">接单代理：</label>
                             <div class="col-sm-3">
                                 <select id="agency" name="wxAd.agency_id">
 					     				<option value="">请选择</option>
 					      			[#list agencyList as agency]
-					     				<option value="${agency.id}">${username.name}</option>
+					     				<option value="${agency.id}">${agency.username}</option>
 					     			[/#list]
 				          		</select> 
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-3 control-label">开始时间：</label>
+                            <label class="col-sm-2 control-label">开始时间：</label>
                             <div class="col-sm-3">
-                                <input type="text" id="start_time" name="wxAd.start_time" readonly="readonly" value="${wxAd.start_time!,dateFormat="yyyy-MM-dd HH:mm:ss"}"
-										class="input-xlarge datepicker"  onblur="onblurVali(this);">
+                                <input type="text" name="wxAd.start_time" readonly="readonly" value="${wxAd.start_time!}"
+										class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                             </div>
-                        </div>
-                         <div class="form-group">
-                            <label class="col-sm-3 control-label">总天数：</label>
+                            <label class="col-sm-2 control-label">总天数：</label>
                             <div class="col-sm-3">
                                 <input placeholder="总天数" class="form-control" type="text" name="wxAd.days">
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-3 control-label">金额：</label>
+                            <label class="col-sm-2 control-label">金额：</label>
                             <div class="col-sm-3">
                                 <input placeholder="金额" class="form-control" type="text" name="wxAd.money">
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-3 control-label">广告内容：</label>
-                            <div class="col-sm-3">
+                            <label class="col-sm-2 control-label">广告内容：</label>
+                            <div class="col-sm-9">
                             	<textarea placeholder="广告内容" class="form-control" rows="3" name="wxAd.content"></textarea>
                             </div>
                         </div>
@@ -114,14 +108,6 @@ $().ready(function() {
             }
         }
     });
-});
-
-$('#start_time').datetimepicker({
-    dateFormat: 'yy-mm-dd',
-	timeFormat: 'HH:mm:ss',
-	stepHour: 1,
-	stepMinute: 5,
-	stepSecond: 5
 });
 
 </script>
