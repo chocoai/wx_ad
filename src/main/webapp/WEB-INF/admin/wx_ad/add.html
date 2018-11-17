@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>添加广告</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>添加广告</h5>
+            </div>
+           <form id="inputForm" action="save" method="post">
+                <div class="ibox-content">
+                    <div class="form-horizontal clearfix">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="手机号码" class="form-control" type="text" name="wxAd.ad_name">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">广告主：</label>
+                            <div class="col-sm-3">
+                                <select id="master" name="wxAd.master_id">
+					     				<option value="">请选择</option>
+					      			[#list masterList as master]
+					     				<option value="${master.id}">${master.name}</option>
+					     			[/#list]
+				          		</select> 
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">归属行业：</label>
+                            <div class="col-sm-3">
+                                <select id="industry" name="wxAd.industry_id">
+					     				<option value="">请选择</option>
+					      			[#list adIndustryList as adIndustry]
+					     				<option value="${adIndustry.id}">${adIndustry.name}</option>
+					     			[/#list]
+				          		</select> 
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">接单代理：</label>
+                            <div class="col-sm-3">
+                                <select id="agency" name="wxAd.agency_id">
+					     				<option value="">请选择</option>
+					      			[#list agencyList as agency]
+					     				<option value="${agency.id}">${username.name}</option>
+					     			[/#list]
+				          		</select> 
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">开始时间：</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="start_time" name="wxAd.start_time" readonly="readonly" value="${wxAd.start_time!,dateFormat="yyyy-MM-dd HH:mm:ss"}"
+										class="input-xlarge datepicker"  onblur="onblurVali(this);">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">总天数：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="总天数" class="form-control" type="text" name="wxAd.days">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">金额：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="金额" class="form-control" type="text" name="wxAd.money">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">广告内容：</label>
+                            <div class="col-sm-3">
+                            	<textarea placeholder="广告内容" class="form-control" rows="3" name="wxAd.content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer col-sm-3 col-sm-offset-2">
+                    <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+                    <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+    var $inputForm = $("#inputForm");
+    
+    // 表单验证
+    $inputForm.validate({
+        rules: {
+            "ad_name": "required",
+            "start_time": "required",
+            "content": "required",
+            "master_id": "required",
+            "industry_id": "required",
+            "days": {
+                required: true,
+                digits: "必须是整数",
+            },
+            "money": {
+                required: true,
+                digits: "必须是整数",
+            },
+            "content": {
+                required: true,
+                equalTo: "#password"
+            }
+        }
+    });
+});
+
+$('#start_time').datetimepicker({
+    dateFormat: 'yy-mm-dd',
+	timeFormat: 'HH:mm:ss',
+	stepHour: 1,
+	stepMinute: 5,
+	stepSecond: 5
+});
+
+</script>
