@@ -890,7 +890,7 @@ li.ht_weibo {
     line-height: 33px;
     position: relative;
     text-align: center;
-    width: 110px;
+    width: 180px;
 }
 .header_snav .beauty_icon {
     background: url("../images/resource/te_beauty.gif") no-repeat scroll right -2px rgba(0, 0, 0, 0);
@@ -905,7 +905,7 @@ li.ht_weibo {
     background: url("../images/comm_new_rep_imgs.png") repeat-x scroll 0 -100px rgba(0, 0, 0, 0);
     color: #FFFFFF;
     font-weight: 700;
-    width: 110px;
+    width: 180px;
 }
 .header_snav .daily_icon {
     background-position: -350px -299px;
